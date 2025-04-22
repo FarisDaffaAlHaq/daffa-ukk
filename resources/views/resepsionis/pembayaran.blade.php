@@ -56,7 +56,6 @@
                     <select name="metodepembayaran" class="form-control" id="metodepembayaran">
                         {{-- <option value="" disabled>{{$item->metodepembayaran}}</option> --}}
                         <option value="cash" @if($item->metodepembayaran == "cash") selected @endif>Cash</option>
-                        <!-- <option value="transfer" @if($item->metodepembayaran == "transfer") selected @endif>Transfer</option> -->
                     </select>
                 </td>
                 <td>
