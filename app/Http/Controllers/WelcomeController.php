@@ -61,7 +61,6 @@ class WelcomeController extends Controller
         $order->totalharga = $order->kamar->hargakamarpermalam * $request->lama_menginap - $request->dp_dibayar;
         $order->lama_menginap = $request->lama_menginap;
         $order->dp_dibayar = $request->dp_dibayar;
-        // $order->kodebooking = mt_rand(100,5000);
         $order->user_id = Auth::id();
         // untuk membuat pesan tanggal mulai dari sekarang atau hari besok
         if ($order->rencanacheckin < (date("Y-m-d"))) {
@@ -79,7 +78,7 @@ class WelcomeController extends Controller
             return redirect()->back()->with('fail','checkout dilarang kurang dari checkin');
         }
         
-// untuk membuat jumlah penginap pas dengan jumlah orang
+    // untuk membuat jumlah penginap pas dengan jumlah orang
         if ($request->jumlah_penginap > $order->kamar->jumlahorangperkamar) {
             return redirect()->back()->with('fail','Jumlah Orang Tidak Boleh Lebih Dari Maksimal');
         } else {
@@ -100,7 +99,6 @@ class WelcomeController extends Controller
         return view('tamu.buktibooking',compact('bookings'));
     }
     public function insertbooking(Request $request){
-        // dd("DUMP DIE SUDAH BERFUNGSI");
         $data = $request->all();
         // dd($data);
         $kamarorders = new KamarOrder;
@@ -147,9 +145,7 @@ class WelcomeController extends Controller
                 'kamarorder' => $kamarorder,
                 'qrCode' => $qrCodeData
             ])->stream();
-        }
-        
-        // return view('tamu.laporanbooking',compact('pdf'));
+        }        
     }
 
     // khusus resepsionis
@@ -157,12 +153,10 @@ class WelcomeController extends Controller
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         return view('resepsionis.datatamu',compact('kamarorders'));
     }
-    // khusus resepsionis
     public function cancel(){
         $kamarcancels = DetailKamarCancel::with('kamars')->latest()->paginate();
         return view('resepsionis.cancel',compact('kamarcancels'));
     }
-    // khusus resepsionis
     public function updatepayment(Request $request,$id){
         $tambahpembayaran = KamarOrder::find($id);
         $tambahpembayaran->jumlahdibayar = $request->jumlahdibayar;
@@ -175,13 +169,11 @@ class WelcomeController extends Controller
         $tambahpembayaran->save();
         return redirect()->back()->with('status','Pembayaran Berhasil Di Tambah');
     }
-    //khusus resepsionis
     public function pembayaran(){
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         return view('resepsionis.pembayaran',compact('kamarorders'));
     }
     
-    // end
     public function cetakpdfresepsionis(){
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         $pdf = FacadePdf::loadview('resepsionis.pdfdatatamu',compact('kamarorders'));
@@ -210,7 +202,7 @@ class WelcomeController extends Controller
         $guestbooking = GuestBooking::all();
         return view('resepsionis.guestorder',compact("guestbooking"));
     }
-    // query ubah status kamar
+    // ubah status kamar
     public function changesroom(Request $request,$id){
         $kamar = Kamar::find($id);
         $kamar->status = $request->status;
@@ -226,7 +218,6 @@ class WelcomeController extends Controller
             'password_lama' => 'required',
             'password_baru' => 'required',
         ]);
-        #perbandingan password baru dan lama
 
         if (!Hash::check($request->password_lama, auth()->user()->password)) {
             return redirect()->back()->with("error","password baru dan password lama tidak sama");
