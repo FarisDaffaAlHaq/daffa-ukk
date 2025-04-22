@@ -304,11 +304,6 @@
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                    <label for="dp_dibayar">Jika ingin melakukan dp</label>
-                    <input type="checkbox" id="dp_dibayar" onclick="IfDibayar()">
-                    <input type="number" class="form-control" value="0" style="display: none;" id="forms" name="dp_dibayar">
-                    </div>
                     <button type="submit" class="btn btn-primary">Pesan Sekarang</button>
                     <a href="/" class="btn btn-danger">Back</a>
                     </form>
