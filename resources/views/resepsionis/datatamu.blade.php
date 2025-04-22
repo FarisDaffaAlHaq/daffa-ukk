@@ -6,7 +6,7 @@
 
 @section('content')
     <h2>Data Tamu</h2>
-    <div class="alert alert-info">Halaman Ini Bertujuan untuk mengetahui user yang sudah lunas</div>
+    <div class="alert alert-info">Data untuk mengetahui user yang sudah lunas</div>
     <a href="/resepsionis/pdfdatatamu" target="_blank" class="my-3 btn btn-info">Laporan PDF</a>
     @if (session('status'))
     <div class="alert alert-success">
