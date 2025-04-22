@@ -3,7 +3,21 @@
         <h2 class="text-center">About</h2>
         <div class="row">
             <div class="col-lg-12">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi nostrum harum fuga corporis deleniti sapiente saepe quas nulla hic alias voluptates, ab nam iusto iure molestiae rerum maxime recusandae inventore sint ut consectetur laborum similique. Saepe sequi molestias nostrum ex expedita dignissimos ad eligendi corporis quis unde labore corrupti iusto natus magnam id deleniti praesentium consectetur adipisci exercitationem nobis, rerum fugit ut laudantium cumque? In modi vitae aut quos eius vel possimus assumenda ducimus voluptatibus, illum repudiandae laboriosam! Nulla error sequi perspiciatis maiores quidem! Minima laudantium fuga voluptates, mollitia consectetur enim possimus inventore harum quos minus porro ducimus molestiae doloribus numquam. Aperiam incidunt necessitatibus iure? Accusamus vitae inventore voluptate est quam dolor deleniti. Odit ullam aperiam quos dolorum veritatis nihil quibusdam facilis, aliquid laboriosam nobis ut iusto sunt perferendis sit totam eaque rem, doloribus, adipisci aut porro temporibus nostrum nisi eos natus. Ad reiciendis quia repellat necessitatibus tenetur fugit quam.</p>
+                <p>Hotel Hebat Insitu menawarkan berbagai pilihan kamar
+                   yang luas dan elegan, mulai dari kamar Reguler hingga 
+                   Deluxe yang lebih besar. Memiliki 
+                   Fasilitas modern seperti tempat tidur king-size 
+                   yang nyaman, televisi layar datar dengan saluran 
+                   internasional, sistem suara berkualitas tinggi, dan 
+                   akses Wi-Fi cepat. Dilengkapi juga dengan area kerja 
+                   yang nyaman dan mini-bar yang menyediakan berbagai 
+                   pilihan minuman dan camilan premium. Untuk tamu yang 
+                   menginginkan lebih banyak ruang dan kemewahan, kamar 
+                   yang tersedia menawarkan pemandangan kota yang 
+                   menakjubkan, ruang tamu yang luas, dan bathtub dengan 
+                   desain modern. Semua kamar memiliki jendela besar 
+                   yang memungkinkan cahaya alami masuk, menciptakan 
+                   suasana hangat dan menyegarkan sepanjang hari.</p>
             </div>
         </div>
     </div>
