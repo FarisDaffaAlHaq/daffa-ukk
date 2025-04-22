@@ -32,7 +32,7 @@ use App\Http\Controllers\FasilitasKamarController;
 // });
 
 Route::controller(WelcomeController::class)->group(function(){
-    // halaman utama
+// halaman utama
 Route::get('/','welcome');
 // login khusus admin
 Route::get('admin.login','loginadmin')->middleware('guest');
@@ -83,7 +83,7 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
-    // redirect setelah verifikasi berhasil
+// redirect setelah verifikasi berhasil
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
