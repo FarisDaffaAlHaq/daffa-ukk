@@ -69,7 +69,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12 d-flex flex-column mx-auto">
             <div class="card card-plain mt-8">
             <div class="card-header pb-0 text-left bg-transparent">
-                <h3 class="font-weight-bolder" style="color: #4b0082">Register</h3>
+                <h3 class="font-weight-bolder" style="color: #4b0082">Register☺️</h3>
                 <p class="mb-0">Please Register your account</p>
             </div>
             <div class="card-body">
