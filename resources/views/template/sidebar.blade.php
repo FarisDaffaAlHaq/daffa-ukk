@@ -52,9 +52,6 @@
 <li class="nav-item mt-3 mb-3">
     <a href="/resepsionis.changestatus/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.changestatus') ? 'border: 1px solid #eb4034;' : '' }}">Kamar</a>
 </li>
-<li class="nav-item mt-3 mb-3">
-    <a href="/resepsionis.guestorder/" class="nav-link list-group-item" style="{{ request()->is('resepsionis.guestorder') ? 'border: 1px solid #74eb34;' : '' }}">Data Tamu Tanpa Akun</a>
-</li>
 @endif
 @if (Auth::user()->role == 'tamu')
 <li class="nav-item">
