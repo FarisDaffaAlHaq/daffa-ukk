@@ -70,14 +70,18 @@
                     <td>
                         @foreach ($kamarorder->detailkamarorder as $item)
                         <ol>
-                            <li>{{$item->kamars->tipe_kamar->tipe_kamar}}</li>
+                            <li>
+                                {{ $item->kamars && $item->kamars->tipe_kamar ? $item->kamars->tipe_kamar->tipe_kamar : 'Data kamar tidak tersedia' }}
+                            </li>
                         </ol>
                     @endforeach
                     </td>
                     <td>
                         @foreach ($kamarorder->detailkamarorder as $item)
                         <ol>
-                            <li>{{number_format($item->kamars->hargakamarpermalam,-2,".",".")}}</li>
+                            <li>
+                                {{ $item->kamars ? number_format($item->kamars->hargakamarpermalam, -2, ".", ".") : 'Harga tidak tersedia' }}
+                            </li>
                         </ol>
                     @endforeach
                     </td>

@@ -35,8 +35,10 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$item->booking_kode}}</td>
                 <td>
-                    <input type="text" class="form-control" name="kembalian" value="{{$item->kembalian}}" readonly>
+                    <input type="text" class="form-control" value="{{$item->kembalian}}" readonly>
+                    <input type="hidden" name="kembalian" value="{{$item->kembalian}}" required>
                 </td>
+
                 <td>
                     <input type="number" class="form-control" name="jumlahdibayar" value="{{$item->jumlahdibayar}}">
                 </td>
@@ -53,18 +55,19 @@
                     <input type="number" class="form-control" name="totalharga" value="{{$hargas}}" readonly>
                 </td>
                 <td>
-                    <select name="metodepembayaran" class="form-control" id="metodepembayaran">
+                    <select name="metodepembayaran" class="form-select" id="metodepembayaran">
                         {{-- <option value="" disabled>{{$item->metodepembayaran}}</option> --}}
                         <option value="cash" @if($item->metodepembayaran == "cash") selected @endif>Cash</option>
+                        <option value="transfer" @if($item->metodepembayaran == "transfer") selected @endif>Transfer</option>
                     </select>
                 </td>
                 <td>
                     {{-- {{"status belum terkonfirmasi"}} --}}
-                    <select name="status" class="form-control" id="metodepembayaran">
+                    <select name="status" class="form-select" id="metodepembayaran">
                         {{-- <option value="">pilih pembayaran</option> --}}
-                        <option value="confirmed" @if($item->status == "confirmed") selected @endif>Terkonfirmasi</option>
-                        <option value="unconfirmed" @if($item->status == "unconfirmed") selected @endif>Tidak Terkonfirmasi</option>
-                        <option value="done" @if($item->status == "done") selected @endif>Sudah Terkonfirmasi</option>
+                        <option value="confirmed" @if($item->status == "confirmed") selected @endif>Sudah Bayar</option>
+                        <option value="unconfirmed" @if($item->status == "unconfirmed") selected @endif>Belum Bayar</option>
+                        <!-- <option value="done" @if($item->status == "done") selected @endif>Sudah Terkonfirmasi</option> -->
                     </select>
                 </td>
                 <td>

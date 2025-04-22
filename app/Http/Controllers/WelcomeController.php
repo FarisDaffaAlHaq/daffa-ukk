@@ -83,7 +83,7 @@ class WelcomeController extends Controller
             return redirect()->back()->with('fail','Jumlah Orang Tidak Boleh Lebih Dari Maksimal');
         } else {
             $order->save();
-            return redirect('tamu.home')->with('status','Kamar Berhasil Di Pesan');
+            return redirect('tamu.home')->with('status','Kamar Berhasil dipesan');
         }
     }
     public function removeorder($id){
@@ -91,7 +91,7 @@ class WelcomeController extends Controller
         $orderkamar = DetailKamarOrder::where('bookings_id',$id);
         $order->delete();
         $orderkamar->delete();
-        return redirect('tamu.home')->with('status','Pesanan Kamar Berhasil di batalkan');
+        return redirect('tamu.home')->with('status','Pesanan Kamar Berhasil dibatalkan');
     }
     public function buktibooking(){
         $user = Auth::user()->id;
@@ -167,7 +167,7 @@ class WelcomeController extends Controller
         $tambahpembayaran->resepsionis_id = Auth::user()->id;
         $tambahpembayaran->status = $request->status;
         $tambahpembayaran->save();
-        return redirect()->back()->with('status','Pembayaran Berhasil Di Tambah');
+        return redirect()->back()->with('status','Pembayaran Berhasil ditambah');
     }
     public function pembayaran(){
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
@@ -191,7 +191,7 @@ class WelcomeController extends Controller
         $kamarorders = DetailKamarOrder::where('kamar_orders_id',$id);
         $kamarorder->delete();
         $kamarorders->delete();
-        return redirect()->back()->with('status','Pembayaran Berhasil Di Cancel');
+        return redirect()->back()->with('status','Pembayaran Berhasil dicancel');
     }
     // changestatus(mengubah status pada kamar)
     public function changestatus(){
@@ -207,7 +207,7 @@ class WelcomeController extends Controller
         $kamar = Kamar::find($id);
         $kamar->status = $request->status;
         $kamar->save();
-        return redirect('resepsionis.changestatus')->with('status','Kamar Berhasil Di ubah');
+        return redirect('resepsionis.changestatus')->with('status','Kamar Berhasil diubah');
     }
     // ubah password (optional/pilihan)
     public function ubahpassword(){
@@ -226,6 +226,6 @@ class WelcomeController extends Controller
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->password_baru)
         ]);
-        return redirect()->back()->with("success","password berhasil di ubah");
+        return redirect()->back()->with("success","password berhasil diubah");
     }
 }
