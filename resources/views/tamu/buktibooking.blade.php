@@ -23,6 +23,11 @@
             <span class="navbar-toggler-icon"></span>
             </button>
         <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                @if (Auth::user()->role == 'tamu')
+                <a class="nav-link" href="/tamu.home">Dashboard</a>
+                @endif
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{Auth::user()->name}}
@@ -41,21 +46,6 @@
                 </li>
                 </ul>
                 </li>
-                <li class="nav-item">
-                    @if (Auth::user()->role == 'tamu')
-                    <a class="nav-link" href="/tamu.home">Dashboard Tamu</a>
-                    @endif
-                </li>
-                <li class="nav-item">
-                    @if (Auth::user()->role == 'tamu')
-                        <a href="/auth.passwords.change-password" class="nav-link">Ubah Password</a>
-                    @endif
-                </li>
-                <!-- <li class="nav-item">
-                    @if (Auth::user()->role == 'tamu')
-                    <a class="nav-link" href="/tamu/buktibooking">Cetak Pembayaran</a>
-                    @endif
-                </li> -->
         </ul>
     </div>
 </nav>

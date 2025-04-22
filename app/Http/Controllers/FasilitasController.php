@@ -46,6 +46,7 @@ class FasilitasController extends Controller
         $fasilitas->namafasilitas = $request->namafasilitas;
         $fasilitas->keterangan = $request->keterangan;
         $fasilitas->save();
+        // $fasilitas->kamar()->attach($request->input('kamar_id'));
         return redirect('fasilitas')->with('status','Fasilitas Berhasil Di Tambahkan');
     }
 

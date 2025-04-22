@@ -14,6 +14,7 @@ class GuestBookingController extends Controller
         return view('guest.index',compact("guestbooking"));
     }
     public function store(Request $request){
+        // dd("test");
         $request->validate([
             'nama' => 'required',
             'email' => 'required',

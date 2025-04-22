@@ -29,6 +29,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         return redirect('user')->with('status','User Berhasil Di tambahkan');
+        // dd("user berhasil di tambah");
     }
     public function edit($id){
         $users = User::find($id);

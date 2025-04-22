@@ -28,6 +28,11 @@
                     <a class="nav-link" href="/">Home</a>
                     @endif
                 </li>
+                <li class="nav-item">
+                    @if (Auth::user()->role == 'tamu')
+                    <a class="nav-link" href="/tamu.home">Dashboard</a>
+                    @endif
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{Auth::user()->name}}
@@ -45,11 +50,6 @@
                         </form>
                     </li>
                     </ul>
-                    </li>
-                    <li class="nav-item">
-                        @if (Auth::user()->role == 'tamu')
-                        <a class="nav-link" href="/tamu.home">Dashboard Tamu</a>
-                        @endif
                     </li>
             </ul>
         </div>

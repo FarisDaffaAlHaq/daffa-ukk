@@ -10,6 +10,9 @@ class Booking extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    // protected $table = 'bookings';
+
+    // protected $guarded = ['id'];
 
     public function user(){
         return $this->belongsTo(User::class);

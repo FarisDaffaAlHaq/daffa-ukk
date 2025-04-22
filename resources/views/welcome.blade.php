@@ -85,8 +85,9 @@
     <section class="room bg-light" id="room">
         <div class="container">
             <h2 class="text-center">Room</h2>
+
             <div class="row">
-            @foreach($kamars as $kamar)
+                @foreach($kamars as $kamar)
                 <div class="col-sm-4 mb-3 mt-3">
                     <div class="card" style="width: 100%;" id="objekpencarian">
                         <img src="{{asset('image/'.$kamar->image)}}" class="card-img-top" style="height: 200px;" alt="gambar kosong">
@@ -103,7 +104,7 @@
                     </div>
                 </div>
                 @endforeach
-                </div>
+            </div>
         </div>
     </section>
     <!-- end room -->

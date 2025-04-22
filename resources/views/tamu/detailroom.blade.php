@@ -88,7 +88,7 @@
                             <a class="nav-link" href="/resepsionis.resepsionis">Dasboard Resepsionis</a>
                             @endif
                             @if (Auth::user()->role == 'tamu')
-                            <a class="nav-link" href="/tamu.home">Dashboard Tamu</a>
+                            <a class="nav-link" href="/tamu.home">Dashboard</a>
                             @endif
                         </li>
                 </ul>
@@ -101,8 +101,7 @@
 
     <div class="container mt-5 mb-5 pt-5 pb-5">
         <div class="row">
-            <h1 class="text-center">Informasi Kamar</h1>
-            <p class="text-center">Agar User / tamu mengetahui informasi dan fasilitas2 yang ada di kamar</p>
+            <h1 class="text-center my-5">Informasi Kamar</h1>
             <div class="col-sm-6">
                 <div class="card" style="width: 100%;">
                     <img src="{{asset('image/'.$kamars->image)}}" class="card-img-top" alt="gambar kosong">

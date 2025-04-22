@@ -64,8 +64,12 @@ class KamarController extends Controller
             $file->move('image',$filename);
         }
         $kamar->image = $filename;
+        // $kamar->image = $filename;
+        // $kamar->fasilitas()->attach($request->input('fasilitas_id'));
         $kamar->save();
         $kamar->fasilitas()->attach($request->input('fasilitas_id'));
+
+        // $kamar = Kamar::create($request->all());
 
         return redirect('kamar.index')->with('status','kamar berhasil ditambah');
     }

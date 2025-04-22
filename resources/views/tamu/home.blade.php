@@ -13,48 +13,48 @@
     </head>
 <body>
     
-<!-- navbar -->
-{{-- @include('templatelandingpage.navbar') --}}
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-        <img src="{{asset('gambarhotel/insitu.png')}}" width="30" class="m-2" height="30" class="d-inline-block align-top" alt="">
-        <a class="navbar-brand" href="/">Hotel Hebat Insitu</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        <ul class="navbar-nav ms-auto">
+    <!-- navbar -->
+    {{-- @include('templatelandingpage.navbar') --}}
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <img src="{{asset('gambarhotel/insitu.png')}}" width="30" class="m-2" height="30" class="d-inline-block align-top" alt="">
+            <a class="navbar-brand" href="/">Hotel Hebat Insitu</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     @if (Auth::user()->role == 'tamu')
                     <a class="nav-link" href="/">Home</a>
                     @endif
-                </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{Auth::user()->name}}
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-    
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
-                </ul>
                 </li>
                 <li class="nav-item">
                     @if (Auth::user()->role == 'tamu')
                         <a href="/auth.passwords.change-password" class="nav-link">Ubah Password</a>
                     @endif
                 </li>
-        </ul>
-    </div>
-</nav>
-<!-- end navbar -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{Auth::user()->name}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+        
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                    </ul>
+                    </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- end navbar -->
 
     <div class="container mt-5 mb-5 pt-5 pb-5">
         <h1 class="text-center">Dashboard</h1>
@@ -97,9 +97,9 @@
                                 <div class="d-flex justify-content-center gap-2">
                                     {{-- Tombol Batalkan --}}
                                     <form action="/welcome/removeorder/{{ $booking->id }}"
-                                        method="POST"
-                                        class="d-inline-block"
-                                        onsubmit="return confirm('Apakah yakin ingin membatalkan pesanan kamar ini?');">
+                                          method="POST"
+                                          class="d-inline-block"
+                                          onsubmit="return confirm('Apakah yakin ingin membatalkan pesanan kamar ini?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Batalkan</button>
@@ -140,8 +140,8 @@
                         <td>{{ $kamarorder->booking_kode }}</td>
                         <td>
                             <a href="/tamu/laporanbooking/{{ $kamarorder->id }}" 
-                            target="_blank" 
-                            class="btn btn-info">
+                               target="_blank" 
+                               class="btn btn-info">
                                 Lihat Bukti
                             </a>
                         </td>
@@ -184,9 +184,9 @@
         background-color: rgba(1,148,243,1.00);
     }
     .btn-primary{
-        background-color: rgba(1,148,243,1.00);
+        background-color:rgba(1,148,243,1.00);
         color: whitesmoke;
-        border: rgba(1,148,243,1.00);
+        border:rgba(1,148,243,1.00);
     }
     .btn-primary:hover{
         background-color: rgba(1,148,243,1.00);

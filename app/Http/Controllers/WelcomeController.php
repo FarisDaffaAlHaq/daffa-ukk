@@ -19,6 +19,9 @@ use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
+use SimpleSoftwareIO\QrCode\Facades\QrCode; 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingConfirmationMail;
 
 class WelcomeController extends Controller
 {
@@ -58,14 +61,15 @@ class WelcomeController extends Controller
         $order->totalharga = $order->kamar->hargakamarpermalam * $request->lama_menginap - $request->dp_dibayar;
         $order->lama_menginap = $request->lama_menginap;
         $order->dp_dibayar = $request->dp_dibayar;
+        // $order->kodebooking = mt_rand(100,5000);
         $order->user_id = Auth::id();
         // untuk membuat pesan tanggal mulai dari sekarang atau hari besok
         if ($order->rencanacheckin < (date("Y-m-d"))) {
-            // dd("Tidak boleh");
+            // dd("anda Tidak boleh");
             return redirect()->back()->with('fail','Tanggal Pesan Tidak Boleh Lebih dari Tanggal sebelumnya');
         }
         if ($order->rencanacheckout < (date("Y-m-d"))) {
-            // dd("Tidak boleh");
+            // dd("anda Tidak boleh");
             return redirect()->back()->with('fail','Tanggal Pesan Tidak Boleh Kurang dari Tanggal Hari ini');
         }
         if ($order->rencanacheckout == $order->rencanacheckin) {
@@ -75,7 +79,7 @@ class WelcomeController extends Controller
             return redirect()->back()->with('fail','checkout dilarang kurang dari checkin');
         }
         
-    // untuk membuat jumlah penginap pas dengan jumlah orang
+// untuk membuat jumlah penginap pas dengan jumlah orang
         if ($request->jumlah_penginap > $order->kamar->jumlahorangperkamar) {
             return redirect()->back()->with('fail','Jumlah Orang Tidak Boleh Lebih Dari Maksimal');
         } else {
@@ -96,7 +100,9 @@ class WelcomeController extends Controller
         return view('tamu.buktibooking',compact('bookings'));
     }
     public function insertbooking(Request $request){
+        // dd("DUMP DIE SUDAH BERFUNGSI");
         $data = $request->all();
+        // dd($data);
         $kamarorders = new KamarOrder;
         $kamarorders->booking_kode = $data['booking_kode'];
         $kamarorders->user_id = $data['user_id'];
@@ -119,7 +125,14 @@ class WelcomeController extends Controller
                 );
                 DetailKamarOrder::create($databooking);
             }
-            return redirect('tamu.home')->with('status','Cetak Pembayaran Berhasil');
+            $qrCodeData = base64_encode(\QrCode::format('png')
+            ->size(200)
+            ->generate(url('/tamu/laporanbooking/' . $kamarorders->id)));
+
+        $user = User::find($kamarorders->user_id);
+        Mail::to($user->email)->send(new BookingConfirmationMail($kamarorders, $qrCodeData));
+
+        return redirect('tamu.home')->with('status','Cetak Pembayaran dan Pengiriman Email Berhasil');
         }
     }
     public function kamarpdf($id){
@@ -127,9 +140,16 @@ class WelcomeController extends Controller
         if ($kamarorder == NULL) {
             return abort(404);
         } else {
-        $pdf = FacadePdf::loadview('tamu.laporanbooking',compact('kamarorder'));
-        return $pdf->stream();
-        }        
+            $qrCodeData = base64_encode(QrCode::format('png')
+                        ->size(200)
+                        ->generate(url('/tamu/laporanbooking/' . $kamarorder->id)));
+            return FacadePdf::loadView('tamu.laporanbooking', [
+                'kamarorder' => $kamarorder,
+                'qrCode' => $qrCodeData
+            ])->stream();
+        }
+        
+        // return view('tamu.laporanbooking',compact('pdf'));
     }
 
     // khusus resepsionis
@@ -137,10 +157,12 @@ class WelcomeController extends Controller
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         return view('resepsionis.datatamu',compact('kamarorders'));
     }
+    // khusus resepsionis
     public function cancel(){
         $kamarcancels = DetailKamarCancel::with('kamars')->latest()->paginate();
         return view('resepsionis.cancel',compact('kamarcancels'));
     }
+    // khusus resepsionis
     public function updatepayment(Request $request,$id){
         $tambahpembayaran = KamarOrder::find($id);
         $tambahpembayaran->jumlahdibayar = $request->jumlahdibayar;
@@ -153,11 +175,13 @@ class WelcomeController extends Controller
         $tambahpembayaran->save();
         return redirect()->back()->with('status','Pembayaran Berhasil Di Tambah');
     }
+    //khusus resepsionis
     public function pembayaran(){
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         return view('resepsionis.pembayaran',compact('kamarorders'));
     }
     
+    // end
     public function cetakpdfresepsionis(){
         $kamarorders = KamarOrder::with('detailkamarorder')->latest()->paginate();
         $pdf = FacadePdf::loadview('resepsionis.pdfdatatamu',compact('kamarorders'));
@@ -186,14 +210,14 @@ class WelcomeController extends Controller
         $guestbooking = GuestBooking::all();
         return view('resepsionis.guestorder',compact("guestbooking"));
     }
-    // ubah status kamar
+    // query ubah status kamar
     public function changesroom(Request $request,$id){
         $kamar = Kamar::find($id);
         $kamar->status = $request->status;
         $kamar->save();
         return redirect('resepsionis.changestatus')->with('status','Kamar Berhasil Di ubah');
     }
-    // ubah password 
+    // ubah password (optional/pilihan)
     public function ubahpassword(){
         return view('auth.passwords.change-password');
     }
@@ -202,6 +226,7 @@ class WelcomeController extends Controller
             'password_lama' => 'required',
             'password_baru' => 'required',
         ]);
+        #perbandingan password baru dan lama
 
         if (!Hash::check($request->password_lama, auth()->user()->password)) {
             return redirect()->back()->with("error","password baru dan password lama tidak sama");

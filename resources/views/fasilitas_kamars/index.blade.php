@@ -20,7 +20,7 @@
                 <th scope="col">Nomor Kamar</th>
                 <th scope="col">Tipe Kamar</th>
                 <th scope="col">Nama Fasilitas</th>
-                <!-- <th scope="col">Action</th> -->
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +40,17 @@
                                 Tidak ada fasilitas di kamar ini
                             </span>
                         @endforelse
+                        </ul>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-success">Edit</a>
+                        <form action="" method="POST" class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
             @empty
                 <tr>
                     <td colspan="5" class="text-danger text-center">Tabel Tidak ada</td>
