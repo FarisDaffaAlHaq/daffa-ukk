@@ -72,9 +72,8 @@
                 </div>
                 <div class="col-sm-6">
                     <label for="user_id" class="form-label">Nama Tamu</label>
-                    <select name="user_id" class="form-control" id="user_id">
-                        <option value="{{Auth::user()->id}}" selected>{{Auth::user()->name}}</option>
-                    </select>
+                    <input type="text" class="form-control" id="user_name" value="{{ Auth::user()->name }}" readonly>
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 </div>
             </div>
             <table class="table table-bordered table table-striped table table-hover">
