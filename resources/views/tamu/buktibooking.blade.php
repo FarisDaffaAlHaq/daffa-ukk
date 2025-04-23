@@ -108,20 +108,20 @@
                             {{-- <td>tidak bisa</td> --}}
                             <td>
                                 @if ($booking->deleted_at == null)
-                                <select class="form-select" name="bookings_id[]">
-                                <option value="{{$booking->id}}">{{$booking->kamar->tipe_kamar->tipe_kamar}}</option>
-                                </select>
+                                <span class="form-control" readonly>{{ $booking->kamar->tipe_kamar->tipe_kamar }}</span>
+                                <input type="hidden" name="bookings_id[]" value="{{ $booking->id }}">
                                 @endif
                             </td>
                             <td>
-                                <select class="form-select" name="kamars_id[]">
-                                <option value="{{$booking->kamar_id}}">{{$booking->kamar->nokamar}}</option>
-                                </select>
+                                <span class="form-control" readonly>{{ $booking->kamar->nokamar }}</span>
+                                <input type="hidden" name="kamars_id[]" value="{{ $booking->kamar_id }}">
                             </td>
                             <td>
                                 <input type="number" class="form-control" name="jumlah_penginap[]" readonly value="{{$booking->jumlah_penginap}}">
                             </td>
-                            <td>{{$booking->kamar->hargakamarpermalam}}</td>
+                            <td>
+                                <input type="number" class="form-control" name="hargakamarpermalam[]" readonly value="{{$booking->kamar->hargakamarpermalam}}">
+                            </td>
                             <td>
                                 <input type="number" class="form-control" name="lama_menginap[]" readonly value="{{$booking->lama_menginap}}">
                             </td>
