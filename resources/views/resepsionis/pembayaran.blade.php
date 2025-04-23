@@ -11,6 +11,15 @@
         {{ session('status') }}
     </div>
 @endif
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="container" style="overflow-x:auto">
 <table class="table table-hover table table-striped table table-bordered" id="pembayaran">
     <thead>

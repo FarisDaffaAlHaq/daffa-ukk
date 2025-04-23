@@ -158,6 +158,14 @@ class WelcomeController extends Controller
         return view('resepsionis.cancel',compact('kamarcancels'));
     }
     public function updatepayment(Request $request,$id){
+        $request->validate([
+            'jumlahdibayar' => ['required', 'numeric', 'min:' . $request->totalharga],
+            'metodepembayaran' => 'required',
+            'status' => 'required',
+        ], [
+            'jumlahdibayar.min' => 'Jumlah dibayar harus lebih besar atau sama dengan total harga.',
+        ]);
+
         $tambahpembayaran = KamarOrder::find($id);
         $tambahpembayaran->jumlahdibayar = $request->jumlahdibayar;
         $tambahpembayaran->metodepembayaran = $request->metodepembayaran;
